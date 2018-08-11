@@ -1,2 +1,2 @@
 #!/bin/sh
-/sbin/su-exec garminbackup /home/garminbackup/gcexport.py -d /home/garminbackup/data --count all -f original -u --username "your.email@mail.com" --password "your.s3cret" 2>&1 
+/sbin/su-exec garminbackup /home/garminbackup/gcexport.py -d /home/garminbackup/data --count 3 -f original -u --username "your.email@mail.com" --password "your.s3cret" 2>&1 
