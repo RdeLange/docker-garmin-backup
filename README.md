@@ -1,7 +1,7 @@
 # docker-garmin-backup
 > A dockerized version of [garmin-connect-export](https://github.com/JohannesHeinrich/garmin-connect-export).
 
-This dockerized implementation of [garmin-connect-export](https://github.com/JohannesHeinrich/garmin-connect-export) is based on [alpine-python2](https://hub.docker.com/r/frolvlad/alpine-python2) and checks every 15' for updated content on your [Garmin Connect](https://connect.garmin.com)-account.
+This dockerized implementation of [garmin-connect-export](https://github.com/JohannesHeinrich/garmin-connect-export) is based on [alpine-python2](https://hub.docker.com/r/frolvlad/alpine-python2) and checks daily for updated content on your [Garmin Connect](https://connect.garmin.com)-account.
 
 ## Preparation
 - git clone this repository
