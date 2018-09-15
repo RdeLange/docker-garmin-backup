@@ -1,16 +1,21 @@
-FROM alpine:latest
+FROM frolvlad/alpine-python2
 
-# Run `docker build --no-cache .` to update dependencies
+LABEL description="A dockerized version of garmin-connect-export."
+LABEL maintainer="Stynoo"
+
+ENV PROJECT=garminbackup
+ENV PROJECT_DIR=/home/$PROJECT
+
+WORKDIR $PROJECT_DIR
+
 RUN apk update --no-cache \
-    && apk add --no-cache python su-exec git
-	
-RUN adduser -D -g '' garminbackup \
-    && mkdir -p /home/garminbackup \
-    && git clone https://github.com/JohannesHeinrich/garmin-connect-export.git /home/garminbackup \
-    && mkdir -p /home/garminbackup/data \
-    && chown -R garminbackup /home/garminbackup
+    && apk add --no-cache su-exec git \
+    && git clone https://github.com/pe-st/garmin-connect-export.git $PROJECT_DIR \
+    && mkdir -p $PROJECT_DIR/data
 
-ADD garminbackup_crontab /etc/periodic/daily/garminbackup
-RUN chmod a+x /etc/periodic/daily/garminbackup
+COPY garminbackup_crontab /etc/periodic/daily/garminbackup
+RUN adduser -D -g '' $PROJECT \ 
+    && chown -R $PROJECT $PROJECT_DIR \
+    && chmod a+x /etc/periodic/daily/garminbackup
 
 CMD ["/usr/sbin/crond","-f"]
